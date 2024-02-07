@@ -1,0 +1,632 @@
+{
+  "35pgg0gc75nv": {
+    "id": "35pgg0gc75nv",
+    "name": "Incident with Codespaces",
+    "updates": [
+      {
+        "title": "Resolved",
+        "text": "From January 5th to January 8th, Codespaces experienced issues with port forwarding when connecting from a web browser. During this incident 100% of operations to forward ports and connect to a forwarded port failed for customers located in US West and Australia. The cause was due to a cross origin API change in our port forwarding service. After detecting the issue, we mitigated the impact by rolling back the change that caused the discrepancy in the cross origin rules. We have improved the way we are detecting issues like this one including implementing automated alerts during and after the rollout process so that we get signals as early as possible.",
+        "time": "Posted Jan 08, 2024 - 23:41 UTC",
+        "unixtime": 1704757263000
+      },
+      {
+        "title": "Update",
+        "text": "The initial mitigation we attempted did not fully resolve this issue.  We are continuing to investigate and will provide an update as soon as possible.",
+        "time": "Posted Jan 08, 2024 - 22:37 UTC",
+        "unixtime": 1704753462000
+      },
+      {
+        "title": "Update",
+        "text": "We are engaged on the issue and continuing to work toward a mitigation. Please continue to fallback to VS Code desktop for port forwarding workflows.",
+        "time": "Posted Jan 08, 2024 - 21:55 UTC",
+        "unixtime": 1704750906000
+      },
+      {
+        "title": "Update",
+        "text": "Mitigation of degraded Codespaces port forwarding in is progress.  In the meantime, please continue to use VS Code Desktop for port forwarding.",
+        "time": "Posted Jan 08, 2024 - 21:03 UTC",
+        "unixtime": 1704747802000
+      },
+      {
+        "title": "Update",
+        "text": "We are actively mitigating degraded performance of Codespaces port forwarding in the web and GitHub CLI.  Codespaces port forwarding on VS Code Desktop is unaffected.",
+        "time": "Posted Jan 08, 2024 - 20:22 UTC",
+        "unixtime": 1704745355000
+      },
+      {
+        "title": "Investigating",
+        "text": "We are investigating reports of degraded performance for Codespaces",
+        "time": "Posted Jan 08, 2024 - 20:22 UTC",
+        "unixtime": 1704745351000
+      }
+    ]
+  },
+  "5y8b8lsqbbyq": {
+    "id": "5y8b8lsqbbyq",
+    "name": "We are investigating reports of degraded performance.",
+    "updates": [
+      {
+        "title": "Resolved",
+        "text": "This incident was the result of an infrastructure change that was made to our load balancers to prepare us for IPv6 enablement of GitHub.com. This change was deployed to a subset of our global edge sites.The change had the unintended consequence of causing IPv4 addresses to start being passed as an IPv4-mapped IPv6-compatible address to our IP Allow List functionality.For example 10.1.2.3 became ::ffff:10.1.2.3. While our IP Allow List functionality was developed with IPv6 in mind, it wasn't developed to handle these mapped addresses, and hence started blocking requests as it deemed these to be not in the defined list of allowed addresses. Request error rates peaked at 0.23% of all requests.We have so far identified three remediation items here:- Update the IP Allow List functionality to handle IPv4-mapped addresses.- Audit the rest of our stack to confirm there are no further places this IPv4-mapped IPv6 addresses flaw exists.- Improve our testing and monitoring processes to better catch these issues in the future.",
+        "time": "Posted Jan 31, 2024 - 14:57 UTC",
+        "unixtime": 1706713036000
+      },
+      {
+        "title": "Update",
+        "text": "We have resolved the issue and confirmed all regions are now operating as expected.",
+        "time": "Posted Jan 31, 2024 - 14:56 UTC",
+        "unixtime": 1706713004000
+      },
+      {
+        "title": "Update",
+        "text": "The fix for ip allow lists is currently rolling out; and we are awaiting confirmation from specific geographic regions.",
+        "time": "Posted Jan 31, 2024 - 14:49 UTC",
+        "unixtime": 1706712574000
+      },
+      {
+        "title": "Update",
+        "text": "We are rolling out a fix to resolve the issues with IP allow lists. This should be resolved shortly.",
+        "time": "Posted Jan 31, 2024 - 14:33 UTC",
+        "unixtime": 1706711635000
+      },
+      {
+        "title": "Update",
+        "text": "Some customers are experiencing issues with IP allow lists.",
+        "time": "Posted Jan 31, 2024 - 14:14 UTC",
+        "unixtime": 1706710463000
+      },
+      {
+        "title": "Investigating",
+        "text": "We are currently investigating this issue.",
+        "time": "Posted Jan 31, 2024 - 14:14 UTC",
+        "unixtime": 1706710451000
+      }
+    ]
+  },
+  "g6drnqm54qd4": {
+    "id": "g6drnqm54qd4",
+    "name": "We are investigating reports of degraded performance.",
+    "updates": [
+      {
+        "title": "Resolved",
+        "text": "On January 28, 2024, between 01:00 UTC and 14:00 UTC the Avatars service was degraded and could not return all avatar images requested by users, instead it would return a default, fallback avatar image. This incident impacted, at peak time 6% of the requests for viewing Avatars. Requests that were impacted did not prevent the users from continuing to use any GitHub services. This was due to an issue with the Avatars service connecting to a database host. We mitigated the incident by restarting the malfunctioning hosts that were not able to return the user avatar images. We are working to improve alerting and monitoring of our services to reduce our time to detection and mitigation.",
+        "time": "Posted Jan 28, 2024 - 14:42 UTC",
+        "unixtime": 1706452975000
+      },
+      {
+        "title": "Update",
+        "text": "We have mitigated all customer impact. We are no longer serving fallback avatar icons when loading web pages for some customers. We continue to monitor the results.",
+        "time": "Posted Jan 28, 2024 - 14:27 UTC",
+        "unixtime": 1706452029000
+      },
+      {
+        "title": "Update",
+        "text": "A fix has been implemented for customers seeing the default avatar (octocat) when loading web pages and we are monitoring the results.",
+        "time": "Posted Jan 28, 2024 - 13:57 UTC",
+        "unixtime": 1706450225000
+      },
+      {
+        "title": "Update",
+        "text": "Some requests for getting the Avatars are returning the fallback response instead of the asked avatar since they are having issues connecting to the Mysql host",
+        "time": "Posted Jan 28, 2024 - 13:20 UTC",
+        "unixtime": 1706448046000
+      },
+      {
+        "title": "Investigating",
+        "text": "We are currently investigating this issue.",
+        "time": "Posted Jan 28, 2024 - 13:20 UTC",
+        "unixtime": 1706448036000
+      }
+    ]
+  },
+  "bsk6hmj0d7nv": {
+    "id": "bsk6hmj0d7nv",
+    "name": "We are investigating reports of degraded performance.",
+    "updates": [
+      {
+        "title": "Resolved",
+        "text": "On January 23, 2024 at 14:36 UTC, our internal metrics began showing an increase in exceptions originating from our live update service. Live updates to Issues, PRs, Actions, and Projects were failing, but refreshing the page successfully updated page content. We resolved the issue by rolling back a problematic dependency update and reenabled live updates at 18:53 UTC. We are working to improve alerting and monitoring of our live update service to reduce our time to detection and mitigation.",
+        "time": "Posted Jan 23, 2024 - 18:53 UTC",
+        "unixtime": 1706036009000
+      },
+      {
+        "title": "Update",
+        "text": "Live updates have been restored and the system is operating normally.",
+        "time": "Posted Jan 23, 2024 - 18:53 UTC",
+        "unixtime": 1706036000000
+      },
+      {
+        "title": "Update",
+        "text": "We have identified and are beginning to roll out a potential fix for issues with live updates to our Web UI that power automatic page updates such as the merge box on Pull Requests and updates to Projects.Users will see actions spinning on the PR merge box for example. As a work around, please refresh the page to get the page updated while we work to fix the issue. We will provide further updates as we continue resolving the issue.",
+        "time": "Posted Jan 23, 2024 - 18:14 UTC",
+        "unixtime": 1706033643000
+      },
+      {
+        "title": "Update",
+        "text": "We are continuing to investigate issues with live updates to our Web UI that power automatic page updates such as the merge box on Pull Requests and updates to Projects.Users will see actions spinning on the PR merge box for example. As a work around, please refresh the page to get the page updated while we work to fix the issue. We will provide further updates as we continue resolving the issue.",
+        "time": "Posted Jan 23, 2024 - 17:17 UTC",
+        "unixtime": 1706030274000
+      },
+      {
+        "title": "Update",
+        "text": "We are continuing to investigate intermittent issues with live updates to our Web UI that power automatic page updates such as the merge box on Pull Requests and updates to Projects. Users will see actions spinning on the PR merge box for example. As a work around, please refresh the page to get the page updated while we work to fix the issue. We will provide further updates as we continue resolving the issue.",
+        "time": "Posted Jan 23, 2024 - 16:37 UTC",
+        "unixtime": 1706027840000
+      },
+      {
+        "title": "Update",
+        "text": "We are investigating intermittent issues with live updates to our Web UI that power automatic page updates such as the merge box on Pull Requests. Users will intermittently see actions spinning on the PR merge box for example. As a work around, please refresh the page to get the page updated while we work to fix the issue. We will provide further updates as we continue resolving the issue.",
+        "time": "Posted Jan 23, 2024 - 15:59 UTC",
+        "unixtime": 1706025586000
+      },
+      {
+        "title": "Investigating",
+        "text": "We are currently investigating this issue.",
+        "time": "Posted Jan 23, 2024 - 15:50 UTC",
+        "unixtime": 1706025015000
+      }
+    ]
+  },
+  "7ck5966p1073": {
+    "id": "7ck5966p1073",
+    "name": "Incident with Codespaces",
+    "updates": [
+      {
+        "title": "Resolved",
+        "text": "On 2024-01-21 at 3:38 UTC, we experienced an incident that affected customers using Codespaces. Customers encountered issues creating and resuming Codespaces in multiple regions due to operational issues with compute and storage resources.Around 25% of customers were impacted, primarily in East US and West Europe. We re-routed traffic for Codespace creations to less impacted regions, but existing Codespaces in these regions may have been unable to resume during the incident.By 7:30 UTC, we had recovered connectivity to all regions except West Europe, which had an extended recovery time due to increased load in that particular region. The incident was resolved on 2024-01-21 at 9:34 UTC once Codespace creations and resumes were working normally in all regions.",
+        "time": "Posted Jan 21, 2024 - 09:34 UTC",
+        "unixtime": 1705829674000
+      },
+      {
+        "title": "Update",
+        "text": "We continue to work on mitigating the issues with Codespace resumes in West Europe.",
+        "time": "Posted Jan 21, 2024 - 09:32 UTC",
+        "unixtime": 1705829522000
+      },
+      {
+        "title": "Update",
+        "text": "We continue to work on mitigating the issues with Codespace resumes in West Europe.",
+        "time": "Posted Jan 21, 2024 - 08:58 UTC",
+        "unixtime": 1705827518000
+      },
+      {
+        "title": "Update",
+        "text": "We continue to work on mitigating the issues with Codespace resumes in West Europe.",
+        "time": "Posted Jan 21, 2024 - 08:27 UTC",
+        "unixtime": 1705825627000
+      },
+      {
+        "title": "Update",
+        "text": "Codespace creation has fully recovered in all regions. We are still mitigating issues with Codespace resumes in West Europe.",
+        "time": "Posted Jan 21, 2024 - 07:55 UTC",
+        "unixtime": 1705823751000
+      },
+      {
+        "title": "Update",
+        "text": "We continue to see recovery in most regions. We are still working on mitigating the issue impacting customers in West Europe.",
+        "time": "Posted Jan 21, 2024 - 07:24 UTC",
+        "unixtime": 1705821890000
+      },
+      {
+        "title": "Update",
+        "text": "We are continuing to monitor recovery in the affected regions.",
+        "time": "Posted Jan 21, 2024 - 06:50 UTC",
+        "unixtime": 1705819802000
+      },
+      {
+        "title": "Update",
+        "text": "We are seeing signs of recovery in the affected regions.",
+        "time": "Posted Jan 21, 2024 - 06:15 UTC",
+        "unixtime": 1705817714000
+      },
+      {
+        "title": "Update",
+        "text": "Codespaces is experiencing degraded performance. We are continuing to investigate.",
+        "time": "Posted Jan 21, 2024 - 06:15 UTC",
+        "unixtime": 1705817713000
+      },
+      {
+        "title": "Update",
+        "text": "We continue to work on mitigating the underlying the issue impacting Codespaces customers.",
+        "time": "Posted Jan 21, 2024 - 06:00 UTC",
+        "unixtime": 1705816827000
+      },
+      {
+        "title": "Update",
+        "text": "We continue to work on mitigating the underlying the issue impacting Codespaces customers.",
+        "time": "Posted Jan 21, 2024 - 05:24 UTC",
+        "unixtime": 1705814679000
+      },
+      {
+        "title": "Update",
+        "text": "Around 15% of Codespaces customers are unable to create or resume their codespaces. We are continuing efforts to mitigate the issue.",
+        "time": "Posted Jan 21, 2024 - 04:50 UTC",
+        "unixtime": 1705812641000
+      },
+      {
+        "title": "Update",
+        "text": "Codespaces is experiencing degraded availability. We are continuing to investigate.",
+        "time": "Posted Jan 21, 2024 - 04:21 UTC",
+        "unixtime": 1705810917000
+      },
+      {
+        "title": "Update",
+        "text": "We have identified the issue impacting Codespaces customers in multiple regions and are working on mitigation.",
+        "time": "Posted Jan 21, 2024 - 04:15 UTC",
+        "unixtime": 1705810513000
+      },
+      {
+        "title": "Update",
+        "text": "We are experiencing elevated error rates in multiple regions and are currently investigating.",
+        "time": "Posted Jan 21, 2024 - 03:38 UTC",
+        "unixtime": 1705808325000
+      },
+      {
+        "title": "Investigating",
+        "text": "We are investigating reports of degraded performance for Codespaces",
+        "time": "Posted Jan 21, 2024 - 03:38 UTC",
+        "unixtime": 1705808319000
+      }
+    ]
+  },
+  "hmvr5kpgzc45": {
+    "id": "hmvr5kpgzc45",
+    "name": "Incident with Actions",
+    "updates": [
+      {
+        "title": "Resolved",
+        "text": "On 2024-01-21 from 02:05 UTC to 06:19 UTC, GitHub Hosted Runners experienced increased error rates from our main cloud service provider. The errors were initially limited to a single region and we were able to route around the issue by transparently failing over to other regions. However, errors gradually expanded across all regions we deploy to and led to our available compute capacity being exhausted.During the incident, up to 35% of Actions jobs using Larger Runners and 2% of Actions jobs using GitHub Hosted Runners overall may have experienced intermittent delays in starting. Once the issue was resolved by our cloud service provider, our systems made a full recovery without intervention.We’re working closely with our service provider to understand the cause of the outage and mitigations we can put in place. We’re also working to increase our resilience to outages of this nature by expanding the regions we deploy to beyond the existing set, especially for Larger Runners.",
+        "time": "Posted Jan 21, 2024 - 06:19 UTC",
+        "unixtime": 1705817992000
+      },
+      {
+        "title": "Update",
+        "text": "We've applied a mitigation to fix the issues with queuing and running Actions jobs. We are seeing improvements in telemetry and are monitoring for full recovery.",
+        "time": "Posted Jan 21, 2024 - 05:54 UTC",
+        "unixtime": 1705816442000
+      },
+      {
+        "title": "Update",
+        "text": "We have mitigated the issues impacting Actions Larger Runners. We are still experiencing delays starting normal jobs, and are continuing to investigate.",
+        "time": "Posted Jan 21, 2024 - 05:26 UTC",
+        "unixtime": 1705814787000
+      },
+      {
+        "title": "Update",
+        "text": "The team has identified the cause of the issues with Actions Larger Runners and has begun mitigation.",
+        "time": "Posted Jan 21, 2024 - 04:53 UTC",
+        "unixtime": 1705812811000
+      },
+      {
+        "title": "Update",
+        "text": "The team continues to investigate issues with some Actions jobs being queued for a long time and a percentage of jobs failing. We will continue providing updates on the progress towards mitigation.",
+        "time": "Posted Jan 21, 2024 - 04:16 UTC",
+        "unixtime": 1705810579000
+      },
+      {
+        "title": "Investigating",
+        "text": "We are investigating reports of degraded performance for Actions",
+        "time": "Posted Jan 21, 2024 - 03:45 UTC",
+        "unixtime": 1705808759000
+      }
+    ]
+  },
+  "pxg3dz4yg7lp": {
+    "id": "pxg3dz4yg7lp",
+    "name": "Incident with Issues, API Requests, Pull Requests, Actions, Pages, Git Operations, Webhooks, Packages and Codespaces",
+    "updates": [
+      {
+        "title": "Resolved",
+        "text": "On January 9 between 12:45 and 13:56 UTC, services in one of our three sites experienced elevated latency for connections.  This led to a sustained period of timed out requests across a number of services, including but not limited to our git backend.  An average of 5% and max of 10% of requests failed with a 5xx response or timed out during this period.  This was caused by a combination of events that led to connection limits being hit in load balancer proxies in that site.  An upgrade of hosts was in flight, which meant a subset of proxy hosts were draining and coming offline as the upgrade rolled through the fleet.  A config change event also triggered a connection reset across all services in that site.  These events are commonplace, but led to a spike in connection establishment events that led to the online proxy hosts hitting the connection limit.  Upon further analysis, that limit was lower than it should have been.  We have increased that limit to prevent this from recurring.  We have also identified improvements to our monitoring of connection limits and behavior and changes to reduce the risk of proxy host upgrades leading to reduced capacity.",
+        "time": "Posted Jan 09, 2024 - 14:40 UTC",
+        "unixtime": 1704811245000
+      },
+      {
+        "title": "Update",
+        "text": "Pull Requests is operating normally.",
+        "time": "Posted Jan 09, 2024 - 14:38 UTC",
+        "unixtime": 1704811137000
+      },
+      {
+        "title": "Update",
+        "text": "Packages is operating normally.",
+        "time": "Posted Jan 09, 2024 - 14:37 UTC",
+        "unixtime": 1704811038000
+      },
+      {
+        "title": "Update",
+        "text": "Git Operations is operating normally.",
+        "time": "Posted Jan 09, 2024 - 14:32 UTC",
+        "unixtime": 1704810773000
+      },
+      {
+        "title": "Update",
+        "text": "Codespaces is operating normally.",
+        "time": "Posted Jan 09, 2024 - 14:27 UTC",
+        "unixtime": 1704810474000
+      },
+      {
+        "title": "Update",
+        "text": "Actions is operating normally.",
+        "time": "Posted Jan 09, 2024 - 14:25 UTC",
+        "unixtime": 1704810351000
+      },
+      {
+        "title": "Update",
+        "text": "API Requests is operating normally.",
+        "time": "Posted Jan 09, 2024 - 14:24 UTC",
+        "unixtime": 1704810253000
+      },
+      {
+        "title": "Update",
+        "text": "Issues is operating normally.",
+        "time": "Posted Jan 09, 2024 - 14:24 UTC",
+        "unixtime": 1704810242000
+      },
+      {
+        "title": "Update",
+        "text": "Webhooks is operating normally.",
+        "time": "Posted Jan 09, 2024 - 14:20 UTC",
+        "unixtime": 1704810001000
+      },
+      {
+        "title": "Update",
+        "text": "Pages is operating normally.",
+        "time": "Posted Jan 09, 2024 - 14:16 UTC",
+        "unixtime": 1704809788000
+      },
+      {
+        "title": "Update",
+        "text": "API Requests is experiencing degraded performance. We are continuing to investigate.",
+        "time": "Posted Jan 09, 2024 - 14:15 UTC",
+        "unixtime": 1704809755000
+      },
+      {
+        "title": "Update",
+        "text": "5xx error rates remain elevated but are seeing a downward trend with many services fully recovered. We will continue monitoring the situation and keep users updated on progress toward full recovery.",
+        "time": "Posted Jan 09, 2024 - 14:15 UTC",
+        "unixtime": 1704809737000
+      },
+      {
+        "title": "Update",
+        "text": "Actions is experiencing degraded performance. We are continuing to investigate.",
+        "time": "Posted Jan 09, 2024 - 14:11 UTC",
+        "unixtime": 1704809498000
+      },
+      {
+        "title": "Update",
+        "text": "We are experiencing an elevated rate of 5xx errors on the order of 1-5% being returned from numerous APIs across the site. The issue has been isolated to one datacenter. We will continue to keep users updated on progress towards mitigation.",
+        "time": "Posted Jan 09, 2024 - 13:39 UTC",
+        "unixtime": 1704807555000
+      },
+      {
+        "title": "Update",
+        "text": "Codespaces is experiencing degraded performance. We are continuing to investigate.",
+        "time": "Posted Jan 09, 2024 - 13:35 UTC",
+        "unixtime": 1704807354000
+      },
+      {
+        "title": "Update",
+        "text": "Packages is experiencing degraded performance. We are continuing to investigate.",
+        "time": "Posted Jan 09, 2024 - 13:34 UTC",
+        "unixtime": 1704807245000
+      },
+      {
+        "title": "Update",
+        "text": "Webhooks is experiencing degraded performance. We are continuing to investigate.",
+        "time": "Posted Jan 09, 2024 - 13:31 UTC",
+        "unixtime": 1704807095000
+      },
+      {
+        "title": "Update",
+        "text": "Git Operations is experiencing degraded performance. We are continuing to investigate.",
+        "time": "Posted Jan 09, 2024 - 13:24 UTC",
+        "unixtime": 1704806671000
+      },
+      {
+        "title": "Update",
+        "text": "Pages is experiencing degraded performance. We are continuing to investigate.",
+        "time": "Posted Jan 09, 2024 - 13:23 UTC",
+        "unixtime": 1704806617000
+      },
+      {
+        "title": "Update",
+        "text": "API Requests is experiencing degraded availability. We are continuing to investigate.",
+        "time": "Posted Jan 09, 2024 - 13:07 UTC",
+        "unixtime": 1704805634000
+      },
+      {
+        "title": "Update",
+        "text": "We are an increase in the rate of 5xx errors on the order of 1-3% being returned from numerous APIs across the site. We will continue to keep users updated on progress towards mitigation.",
+        "time": "Posted Jan 09, 2024 - 13:05 UTC",
+        "unixtime": 1704805558000
+      },
+      {
+        "title": "Update",
+        "text": "Actions is experiencing degraded availability. We are continuing to investigate.",
+        "time": "Posted Jan 09, 2024 - 13:05 UTC",
+        "unixtime": 1704805540000
+      },
+      {
+        "title": "Update",
+        "text": "Pull Requests is experiencing degraded performance. We are continuing to investigate.",
+        "time": "Posted Jan 09, 2024 - 13:04 UTC",
+        "unixtime": 1704805447000
+      },
+      {
+        "title": "Investigating",
+        "text": "We are investigating reports of degraded performance for Issues and API Requests",
+        "time": "Posted Jan 09, 2024 - 13:02 UTC",
+        "unixtime": 1704805352000
+      }
+    ]
+  },
+  "dxthh9653wkk": {
+    "id": "dxthh9653wkk",
+    "name": "We are investigating reports of degraded performance.",
+    "updates": [
+      {
+        "title": "Resolved",
+        "text": "On January 9 between 1:06 and 5:43 UTC, no audit log events were streamed for customers that have that enabled. All events that happened during this time were delivered after the issue was mitigated. The event delivery was failing due to a data shape issue, with a streaming configuration linked to a soft-deleted Enterprise causing a runtime error for a backend service.  This was mitigated by removing that configuration.  Since the incident, we have improved our detection of these errors and ensured support for similar scenarios.",
+        "time": "Posted Jan 09, 2024 - 05:44 UTC",
+        "unixtime": 1704779077000
+      },
+      {
+        "title": "Update",
+        "text": "Audit logs streaming is currently unavailable due to a misconfiguration issue. The root cause is understood and our engineers will be updating the broken configuration shortly.",
+        "time": "Posted Jan 09, 2024 - 05:40 UTC",
+        "unixtime": 1704778852000
+      },
+      {
+        "title": "Investigating",
+        "text": "We are currently investigating this issue.",
+        "time": "Posted Jan 09, 2024 - 04:59 UTC",
+        "unixtime": 1704776397000
+      }
+    ]
+  },
+  "zzy7pdshgqk0": {
+    "id": "zzy7pdshgqk0",
+    "name": "We are investigating reports of degraded performance.",
+    "updates": [
+      {
+        "title": "Resolved",
+        "text": "From 10:30 to 16:15 UTC on January 3rd, our `/settings/emails` page experienced downtime due to an outage in our contact permissions system. During this time customers were unable to update their email subscription preferences.This system plays a crucial role in managing email subscriptions and the contactability of GitHub customers by our marketing and sales teams. Unfortunately, the outage prevented the generation of links for managing email subscriptions, resulting in the `/settings/emails` page timing out. Consequently, customers were unable to update their email subscription preferences during this period.During the incident we implemented graceful degradation on the `/settings/email` page to enable certain functionality, albeit with slower response times. By approximately 16:15 UTC on January 3rd, our contact permissions system was fully operational again, and customers could manage their email subscription preferences as usual.With the issue now resolved, our team is enhancing the `/settings/emails` page  resilience to minimize the impact of system outages in the future. This includes better request timeout handling and improved metrics and monitoring in this area of the application.",
+        "time": "Posted Jan 03, 2024 - 17:05 UTC",
+        "unixtime": 1704301505000
+      },
+      {
+        "title": "Update",
+        "text": "The /settings/email page remains slow, but we are continuing to see improvements.",
+        "time": "Posted Jan 03, 2024 - 16:51 UTC",
+        "unixtime": 1704300708000
+      },
+      {
+        "title": "Update",
+        "text": "We have resolved the timeouts on our end, but customers will still see slow load times on the /settings/email page.",
+        "time": "Posted Jan 03, 2024 - 16:08 UTC",
+        "unixtime": 1704298094000
+      },
+      {
+        "title": "Update",
+        "text": "We have identified a potential mitigation for the issue and are rolling it out. Additionally, we are still working with our external provider for a mitigation from them.",
+        "time": "Posted Jan 03, 2024 - 15:13 UTC",
+        "unixtime": 1704294823000
+      },
+      {
+        "title": "Update",
+        "text": "We are continuing to investigate reports of issues with the /settings/emails page. We are working with the provider to get a mitigation and are exploring options to mitigate on our end.",
+        "time": "Posted Jan 03, 2024 - 14:07 UTC",
+        "unixtime": 1704290845000
+      },
+      {
+        "title": "Update",
+        "text": "We're seeing issues related to a provider and are engaging them to investigate the issue.",
+        "time": "Posted Jan 03, 2024 - 13:23 UTC",
+        "unixtime": 1704288236000
+      },
+      {
+        "title": "Update",
+        "text": "We are continuing to investigate reports of issues with the /settings/emails page. We will continue to keep users updated on progress towards mitigation.",
+        "time": "Posted Jan 03, 2024 - 12:59 UTC",
+        "unixtime": 1704286786000
+      },
+      {
+        "title": "Update",
+        "text": "We're seeing problems loading the /settings/emails page.",
+        "time": "Posted Jan 03, 2024 - 12:42 UTC",
+        "unixtime": 1704285739000
+      },
+      {
+        "title": "Investigating",
+        "text": "We are currently investigating this issue.",
+        "time": "Posted Jan 03, 2024 - 12:42 UTC",
+        "unixtime": 1704285735000
+      }
+    ]
+  },
+  "1ksntt4bk3bq": {
+    "id": "1ksntt4bk3bq",
+    "name": "We are investigating reports of degraded performance.",
+    "updates": [
+      {
+        "title": "Resolved",
+        "text": "On December 26, 2023, GitHub received a report through our Bug Bounty Program demonstrating a vulnerability which, if exploited, allowed access to credentials within a production container. We fixed this vulnerability on GitHub.com the same day and began rotating all potentially exposed credentials. Through this process we found some flaws in how we rotate certain credentials and are working on improving our credential rotation process. More detail can be found on our blog: https://github.blog/2024-01-16-rotating-credentials-for-github-com-and-new-ghes-patches/",
+        "time": "Posted Dec 29, 2023 - 21:21 UTC",
+        "unixtime": 1703884898000
+      },
+      {
+        "title": "Update",
+        "text": "We are in the process of reverting a change that introduced these failures.",
+        "time": "Posted Dec 29, 2023 - 21:09 UTC",
+        "unixtime": 1703884191000
+      },
+      {
+        "title": "Update",
+        "text": "We’re investigating reports of increased failure rates for migrations with GitHub Enterprise Importer and exports using the Organization Migrations REST API.",
+        "time": "Posted Dec 29, 2023 - 20:05 UTC",
+        "unixtime": 1703880331000
+      },
+      {
+        "title": "Investigating",
+        "text": "We are currently investigating this issue.",
+        "time": "Posted Dec 29, 2023 - 20:05 UTC",
+        "unixtime": 1703880328000
+      }
+    ]
+  },
+  "464b7g25n77j": {
+    "id": "464b7g25n77j",
+    "name": "Incident with API Requests",
+    "updates": [
+      {
+        "title": "Resolved",
+        "text": "On December 26, 2023, GitHub received a report through our Bug Bounty Program demonstrating a vulnerability which, if exploited, allowed access to credentials within a production container. We fixed this vulnerability on GitHub.com the same day and began rotating all potentially exposed credentials. Through this process we found some flaws in how we rotate certain credentials and are working on improving our credential rotation process. More detail can be found on our blog: https://github.blog/2024-01-16-rotating-credentials-for-github-com-and-new-ghes-patches/",
+        "time": "Posted Dec 29, 2023 - 18:33 UTC",
+        "unixtime": 1703874832000
+      },
+      {
+        "title": "Update",
+        "text": "With a mitigation deploying, we see recovery in most API requests and are continuing to monitor full rollout and mitigation.",
+        "time": "Posted Dec 29, 2023 - 18:31 UTC",
+        "unixtime": 1703874667000
+      },
+      {
+        "title": "Update",
+        "text": "Secret Scanning and potentially other APIs are returning 500 error responses.  We're working on a mitigation.",
+        "time": "Posted Dec 29, 2023 - 18:21 UTC",
+        "unixtime": 1703874065000
+      },
+      {
+        "title": "Investigating",
+        "text": "We are investigating reports of degraded performance for API Requests",
+        "time": "Posted Dec 29, 2023 - 18:17 UTC",
+        "unixtime": 1703873867000
+      }
+    ]
+  },
+  "1h37j1mb9xnx": {
+    "id": "1h37j1mb9xnx",
+    "name": "We are investigating reports of degraded performance.",
+    "updates": [
+      {
+        "title": "Resolved",
+        "text": "On December 26, 2023, GitHub received a report through our Bug Bounty Program demonstrating a vulnerability which, if exploited, allowed access to credentials within a production container. We fixed this vulnerability on GitHub.com the same day and began rotating all potentially exposed credentials. Through this process we found some flaws in how we rotate certain credentials and are working on improving our credential rotation process. More detail can be found on our blog: https://github.blog/2024-01-16-rotating-credentials-for-github-com-and-new-ghes-patches/",
+        "time": "Posted Dec 29, 2023 - 02:04 UTC",
+        "unixtime": 1703815484000
+      },
+      {
+        "title": "Update",
+        "text": "Users without an existing valid session are unable to login and will see an error page.  We are working on a mitigation.",
+        "time": "Posted Dec 29, 2023 - 01:41 UTC",
+        "unixtime": 1703814119000
+      },
+      {
+        "title": "Investigating",
+        "text": "We are currently investigating this issue.",
+        "time": "Posted Dec 29, 2023 - 01:41 UTC",
+        "unixtime": 1703814115000
+      }
+    ]
+  }
+}
