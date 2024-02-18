@@ -3,13 +3,25 @@ import { readFileSync, stat, statSync, writeFileSync } from 'fs';
 import { resolve, join } from 'path';
 import { getSavedIncidentIDs } from './incident_id_scraper.mjs';
 
+
+// A minimal type to describe the data in incidents.json
+export type GitHubIncident = {
+  id: string;
+  name: string;
+  updates: {
+    title: string;
+    text: string;
+    time: string;
+    unixtime: number
+  }[];
+};
+
 // We don't care what the incidents actually look like, just that this is how it is stored in the JSON
-type IncidentMap = Record<string, any>;
+type IncidentMap = Record<string, GitHubIncident>;
 
 const savedIncidentsFilePath = resolve(join("data", "scripts", "incident_scraper", "incidents.json"));
 const savedIncidentsCacheFilePath = resolve(join("data", "scripts", "incident_scraper", "cache"));
 
-scrapeNewIncidents(1000);
 
 
 
@@ -43,12 +55,11 @@ export async function scrapeNewIncidents(crawlingDelayInMs: number): Promise<voi
 }
 
 
-function getSavedIncidents(): IncidentMap {
+export function getSavedIncidents(): IncidentMap {
   const data = readFileSync(savedIncidentsFilePath, 'utf-8');
   return JSON.parse(data);
 }
 function setSavedIncidents(incidents: IncidentMap): void {
-  console.log(incidents);
   writeFileSync(savedIncidentsFilePath, JSON.stringify(incidents, null, '  '));
 }
 
